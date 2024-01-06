@@ -838,10 +838,18 @@ out_for_read_message:
 
 			jmp for_4_bits_out_cript
 		out_4_bits:
-		
+			
 	pusha	
+		addl	$48, k
+		movl	k, %ecx
+		cmp	$57, %ecx
+		jle ok_hexa
+
+		addl	$7, k
+
+		ok_hexa: 
 		push	k
-		push	$formatPrintfX
+		push	$formatPrintfChar
 		call printf
 		popl	%ebx
 		popl	%ebx
